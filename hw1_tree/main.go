@@ -32,13 +32,13 @@ func dirTreeAcc(out io.Writer, path string, printFiles bool, ident string) error
 		log.Fatal(err)
 		return err
 	}
-	defer file.Close()
 
 	fileInfo, err := file.Readdir(-1)
 	if err != nil {
 		log.Fatal(err)
 		return err
 	}
+	file.Close()
 
 	sort.Slice(fileInfo, func(i, j int) bool {
 		return fileInfo[i].Name() < fileInfo[j].Name()
